@@ -11,6 +11,17 @@ For example, in a social network, a contact graph can be used to identify influe
 Here is an example of a contact graph representing a social network:
 
 ```
+digraph G {
+  Alice -> Bob
+  Alice -> Eve
+  Bob -> Charlie
+  Eve -> Charlie
+  Charlie -> David
+  Charlie -> Franck
+}
+```
+
+```
    Alice
   /      \
 Bob      Eve
@@ -20,7 +31,7 @@ Bob      Eve
 David    Frank
 ```
 
-In this example, the nodes represent individuals (Alice, Bob, Eve, Charlie, David, and Frank) and the edges represent connections between them. For example, the edge between nodes Alice and Bob indicates that Alice and Bob are connected in the social network, while the edge between nodes Charlie and David indicates that Charlie and David are connected in the social network.
+In this example, the nodes represent individuals (Alice, Bob, Eve, Charlie, David, and Frank) and the edges represent connections between them. For example, the edge between nodes Alice and Bob indicates that Alice and Bob are connected in the social network.
 
 ## Why load testing ?
 
