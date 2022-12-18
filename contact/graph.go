@@ -5,18 +5,18 @@ import (
 	"sort"
 )
 
-// ContactGraph is a directed cyclic contact
-type ContactGraph map[string][]User
+// Graph is directed cyclic
+type Graph map[string][]User
 
-func NewContactGraph() ContactGraph {
+func NewGraph() Graph {
 	return make(map[string][]User)
 }
 
-func (cg ContactGraph) addNode(phoneNumber string) {
+func (cg Graph) addNode(phoneNumber string) {
 	cg[phoneNumber] = []User{}
 }
 
-func (cg ContactGraph) addEdge(phoneNumber string, contact User) error {
+func (cg Graph) addEdge(phoneNumber string, contact User) error {
 	for _, user := range cg[phoneNumber] {
 		if user.PhoneNumber == contact.PhoneNumber {
 			return errors.New("node2 is already a contact of node1")
@@ -27,12 +27,12 @@ func (cg ContactGraph) addEdge(phoneNumber string, contact User) error {
 }
 
 // Lookup returns all contacts of this phone number
-func (cg ContactGraph) Lookup(phoneNumber string) []User {
+func (cg Graph) Lookup(phoneNumber string) []User {
 	return cg[phoneNumber]
 }
 
 // RLookup returns all contacts who have this phone number in their contacts
-func (cg ContactGraph) RLookup(phoneNumber string) []User {
+func (cg Graph) RLookup(phoneNumber string) []User {
 	var usersWithPhoneNumber []User
 	for phone, contacts := range cg {
 		for _, user := range contacts {
@@ -45,20 +45,20 @@ func (cg ContactGraph) RLookup(phoneNumber string) []User {
 }
 
 // Suggest returns 10 suggested contacts
-// - contacts who have user number
+// - contacts who have user's number in their contacts
 // - contacts of user's contacts
 // - contacts with same phone country
 // - contacts with same phone area
 // - contacts in common (breadth-first search - 2 levels deep)
-func (cg ContactGraph) Suggest(user User) []Suggestion {
+func (cg Graph) Suggest(user User) []Suggestion {
 	const (
 		ScoreHasUserPhoneNumber = 3
 		ScoreHasCommonContact   = 2
 		ScoreIsSamePhoneArea    = 2
 		ScoreIsSamePhoneCountry = 1
 	)
-	// get contacts with same phone area and add +2 score
-	// get contacts with same country and add +1 score
+	// todo: get contacts with same phone area and add +2 score
+	// todo: get contacts with same country and add +1 score
 
 	// use RLookup to get all contacts who have my numbers
 	rlookupUsers := cg.RLookup(user.PhoneNumber)
@@ -83,9 +83,9 @@ func (cg ContactGraph) Suggest(user User) []Suggestion {
 	}
 
 	suggestions := OrderSuggestions(scoredContactsMap)
-	// add score same country
 
-	// add score same phone area
+	// todo: add score same country
+	// todo: add score same phone area
 
 	return suggestions[:10]
 }

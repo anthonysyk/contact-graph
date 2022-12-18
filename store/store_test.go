@@ -20,7 +20,7 @@ func TestLoadData(t *testing.T) {
 	store, err := Open(fmt.Sprintf("../tmp/%s", filename))
 	checkErr(err)
 
-	graph := contact.NewContactGraph()
+	graph := contact.NewGraph()
 	allPhones := contact.PopulateRandom(nbOfNodes, nbOfContactsPerNodes, graph)
 
 	user1 := contact.User{PhoneNumber: allPhones[0]}

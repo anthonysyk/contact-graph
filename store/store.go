@@ -14,8 +14,8 @@ func generateGraphName(nbOfNodes, nbOfContactsPerNodes int) string {
 	return fmt.Sprintf("contact-%v-%v.db", nbOfNodes, nbOfContactsPerNodes)
 }
 
-func LoadGraph(nbOfNodes, nbOfContactsPerNodes int) (contact.ContactGraph, contact.User) {
-	graph := contact.NewContactGraph()
+func LoadGraph(nbOfNodes, nbOfContactsPerNodes int) (contact.Graph, contact.User) {
+	graph := contact.NewGraph()
 
 	var user1 contact.User
 

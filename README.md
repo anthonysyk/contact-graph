@@ -2,11 +2,9 @@
 
 ## What is a contact graph ?
 
-A contact graph is a type of graph data structure that represents the contacts or interactions between individuals. It is often used to model complex systems or networks, such as social networks or biological networks. 
+A contact graph is a type of graph data structure that represents the contacts or interactions between individuals. It is often used to model complex systems or networks, such as social networks. 
 
 In a contact graph, each node represents an individual or entity, and an edge between two nodes indicates that there is some kind of interaction or connection between them.
-
-Contact graphs are often used to analyze and understand the relationships between individuals or entities within a system. 
 
 For example, in a social network, a contact graph can be used to identify influential individuals or to understand how information or ideas spread through the network.
 
@@ -37,7 +35,7 @@ type User struct {
 }
 ```
 
-The graph is a dictionnary :
+The graph is a dictionary :
 ```golang
 // Graph is directed cyclic
 type Graph map[string][]User
@@ -52,13 +50,17 @@ type Interface interface {
 }
 ```
 
-For the Suggest algorithm, I used a score on different situations : 
+For the Suggest algorithm, I used a score on different conditions : 
 ```golang
 // - contacts who have user number
 // - contacts of user's contacts
 // - contacts with same phone country
 // - contacts with same phone area
 // - contacts in common (breadth-first search - 2 levels deep)
+type Suggestion struct {
+    User  User
+    Score int
+}
 ```
 
 ## How to run the test
@@ -69,7 +71,7 @@ go run .
 Specify graph dataset before running and if dataset do not exists, please generate one.
 
 ## Stack used
-- Golang (currently used langage)
+- Golang (currently used language)
 - BoltDB (to load pre-generated persisted data in-memory)
     - Bolt is a pure Go key/value embedded database for Go.
     - https://github.com/boltdb/bolt

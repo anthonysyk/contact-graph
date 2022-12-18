@@ -8,7 +8,7 @@ import (
 	"github.com/brianvoe/gofakeit/v6"
 )
 
-func PopulateRandom(nbNodes, nbContactsPerUser int, graph ContactGraph) []string {
+func PopulateRandom(nbNodes, nbContactsPerUser int, graph Graph) []string {
 	var allPhoneNumberList []string
 	// generate users
 	for len(graph) < nbNodes {
